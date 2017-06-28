@@ -4,10 +4,10 @@
 Supports workouts such as tennis, socces or basketball.
 
 Tracks:
-– active calories;
-– current HR;
-– max HR;
-– acerage HR.
+- active calories;
+- current HR;
+- max HR;
+- average HR.
 
 Workouts can be started from iPhone.
 
