@@ -1,7 +1,7 @@
 # Just Do It
 ## Sample watchOS app with sports-based workouts
 
-Supports workouts such as tennis, socces or basketball.
+Supports workouts such as tennis, soccer or basketball.
 
 Tracks:
 - active calories;
