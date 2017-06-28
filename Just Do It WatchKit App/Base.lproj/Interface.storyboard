@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Just Do It-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="SetupInterfaceController" title="Just Do It" id="AgC-eL-Hgc" customClass="SetupInterfaceController" customModule="Just_Do_It_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="0.050000000000000003" alignment="left" id="aWg-jK-C2z"/>
+                        <group width="1" height="0.69999999999999996" alignment="left" layout="vertical" id="X2J-sx-WCf">
+                            <items>
+                                <picker width="0.80000000000000004" height="0.40000000000000002" alignment="center" focusStyle="stack" id="7ll-My-rfV">
+                                    <connections>
+                                        <action selector="sportChanged:" destination="AgC-eL-Hgc" id="91V-lj-3Ys"/>
+                                    </connections>
+                                </picker>
+                                <label width="1" height="0.59999999999999998" alignment="left" text="🎾" textAlignment="center" id="FIy-8W-vIQ">
+                                    <fontDescription key="font" type="system" pointSize="52"/>
+                                    <variation key="device=watch42mm">
+                                        <fontDescription key="font" type="system" pointSize="64"/>
+                                    </variation>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" height="0.25" alignment="left" id="ZA9-u1-uZc">
+                            <items>
+                                <button width="1" height="1" alignment="left" title="Start" id="wSg-ga-uTh">
+                                    <connections>
+                                        <action selector="startWorkout" destination="AgC-eL-Hgc" id="Pgu-bm-jbE"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="sportLabel" destination="FIy-8W-vIQ" id="TtC-fC-Su7"/>
+                        <outlet property="sportPicker" destination="7ll-My-rfV" id="rwb-Qn-wQc"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--WorkoutInterfaceController-->
+        <scene sceneID="Fib-sc-3LD">
+            <objects>
+                <controller identifier="WorkoutInterfaceController" id="55k-q9-QR2" customClass="WorkoutInterfaceController" customModule="Just_Do_It_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="0.75" alignment="left" layout="vertical" spacing="0.0" id="6eM-Hh-b9V">
+                            <items>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="bGX-wN-yht">
+                                    <items>
+                                        <timer height="36" alignment="left" previewedSeconds="0" id="bZY-mJ-xYI">
+                                            <color key="textColor" red="0.38431372549999998" green="0.90196078430000004" blue="0.13145233349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="36"/>
+                                            <variation key="device=watch38mm" height="32">
+                                                <fontDescription key="font" type="system" pointSize="32"/>
+                                            </variation>
+                                        </timer>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="Myg-n6-E9w">
+                                    <items>
+                                        <label height="26" alignment="left" verticalAlignment="bottom" text="--" id="Lex-xM-MPK">
+                                            <color key="textColor" red="0.64313725489999995" green="0.59607843140000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="24"/>
+                                        </label>
+                                        <label height="20" alignment="left" verticalAlignment="bottom" text="Active Cal" id="jkB-4N-Lcn">
+                                            <color key="textColor" red="0.64313725489999995" green="0.59607843140000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="18"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="Kf0-61-2ZQ">
+                                    <items>
+                                        <label height="26" alignment="left" verticalAlignment="bottom" text="--" id="tWa-fK-rdr">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="24"/>
+                                        </label>
+                                        <label height="20" alignment="left" verticalAlignment="bottom" text="BPM Now" id="ibt-RR-poc">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="18"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="Cna-rz-XQV">
+                                    <items>
+                                        <label height="26" alignment="left" verticalAlignment="bottom" text="--" id="EdI-31-7kU">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="24"/>
+                                        </label>
+                                        <label height="20" alignment="left" verticalAlignment="bottom" text="BPM Max 3'" id="7l2-Xm-Dqn">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="18"/>
+                                        </label>
+                                    </items>
+                                </group>
+                            </items>
+                            <variation key="device=watch38mm" spacing="2"/>
+                        </group>
+                        <group width="1" height="0.25" alignment="left" id="Dh2-z4-qGS">
+                            <items>
+                                <button width="0.5" height="1" alignment="left" title="Pause" id="QJq-rD-wwA">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <connections>
+                                        <action selector="pauseResume" destination="55k-q9-QR2" id="5xc-9o-jON"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" height="1" alignment="left" title="Stop" id="shy-L3-jfj">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <connections>
+                                        <action selector="stop" destination="55k-q9-QR2" id="ZFN-IB-xSH"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="caloriesLabel" destination="Lex-xM-MPK" id="0JL-ye-tiZ"/>
+                        <outlet property="heartRateLabel" destination="tWa-fK-rdr" id="Byz-IJ-QLX"/>
+                        <outlet property="maxHeartRateLabel" destination="EdI-31-7kU" id="CEz-0A-izT"/>
+                        <outlet property="pauseResumeButton" destination="QJq-rD-wwA" id="3c5-dQ-hnX"/>
+                        <outlet property="stopButton" destination="shy-L3-jfj" id="une-cQ-lJH"/>
+                        <outlet property="timer" destination="bZY-mJ-xYI" id="6Mg-wy-QUw"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="467" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Just_Do_It_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--SummaryInterfaceController-->
+        <scene sceneID="oLz-K3-azN">
+            <objects>
+                <controller identifier="SummaryInterfaceController" id="eIM-S6-iot" customClass="SummaryInterfaceController" customModule="Just_Do_It_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="0.75" alignment="left" layout="vertical" spacing="0.0" id="J3o-Y7-zr4">
+                            <items>
+                                <label alignment="left" verticalAlignment="bottom" text="😊" id="kx0-A9-xxC">
+                                    <fontDescription key="font" type="system" pointSize="18"/>
+                                    <variation key="device=watch42mm">
+                                        <fontDescription key="font" type="system" pointSize="26"/>
+                                    </variation>
+                                </label>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="xUi-BF-pDl">
+                                    <items>
+                                        <timer height="22" alignment="left" previewedSeconds="0" id="Moq-2z-q7L">
+                                            <color key="textColor" red="0.38431372549999998" green="0.90196078430000004" blue="0.13145233349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="20"/>
+                                        </timer>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="Fph-zn-7D2">
+                                    <items>
+                                        <label height="22" alignment="left" verticalAlignment="bottom" text="--" id="lmF-tX-b3D">
+                                            <color key="textColor" red="0.64313725489999995" green="0.59607843140000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="20"/>
+                                        </label>
+                                        <label height="16" alignment="left" verticalAlignment="bottom" text="Active Cal" id="zax-is-u2g">
+                                            <color key="textColor" red="0.64313725489999995" green="0.59607843140000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="14"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="Gtt-XO-avc">
+                                    <items>
+                                        <label height="22" alignment="left" verticalAlignment="bottom" text="--" id="yZ6-fu-HzP">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="20"/>
+                                        </label>
+                                        <label height="16" alignment="left" verticalAlignment="bottom" text="BPM Average" id="0s7-dt-aJ6">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="14"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" verticalAlignment="bottom" id="on5-25-PSZ">
+                                    <items>
+                                        <label height="22" alignment="left" verticalAlignment="bottom" text="--" id="7ee-JU-RZ2">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <variation key="device=watch38mm" height="20"/>
+                                        </label>
+                                        <label height="16" alignment="left" verticalAlignment="bottom" text="BPM Max" id="MR0-Nw-97w">
+                                            <color key="textColor" red="0.99920397996902466" green="0.20577156543731689" blue="0.0025210045278072357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <variation key="device=watch38mm" height="14"/>
+                                        </label>
+                                    </items>
+                                </group>
+                            </items>
+                            <variation key="device=watch38mm" spacing="2"/>
+                        </group>
+                        <group width="1" height="0.25" alignment="left" id="Cq4-9K-5c9">
+                            <items>
+                                <button width="1" height="1" alignment="left" title="OK" id="XgB-IA-hKh">
+                                    <connections>
+                                        <action selector="close" destination="eIM-S6-iot" id="UlG-2G-YrP"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="averageHeartRateLabel" destination="yZ6-fu-HzP" id="yu9-hm-FPz"/>
+                        <outlet property="caloriesLabel" destination="lmF-tX-b3D" id="yza-23-eGW"/>
+                        <outlet property="maxHeartRateLabel" destination="7ee-JU-RZ2" id="pM6-Io-5Nu"/>
+                        <outlet property="summaryLabel" destination="kx0-A9-xxC" id="aRd-zC-Bw8"/>
+                        <outlet property="timer" destination="Moq-2z-q7L" id="azK-bh-2MP"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="733" y="346"/>
+        </scene>
+    </scenes>
+</document>
