@@ -11,6 +11,8 @@ import HealthKit
 
 
 enum WorkoutConfig {
+    // All the workout configs that the app supports.
+    // Usage: add your own config here.
     case traditionalGym
     case crossFit
     case functional
@@ -18,6 +20,8 @@ enum WorkoutConfig {
     case basketball
     case soccer
     
+    // All the workout configs that are available within both watchOS and iOS apps
+    // Usage: you can manage this list as you wish.
     static let defaultSports = [
         WorkoutConfig.traditionalGym,
         WorkoutConfig.crossFit,
@@ -28,6 +32,8 @@ enum WorkoutConfig {
     ]
     
     
+    // Helper method to create WorkoutConfig from HKWorkoutActivityType – used when starting workout from iPhone
+    // Usage: link your config to HealthKit's activity type.
     static func config(for workoutType: HKWorkoutActivityType) -> WorkoutConfig? {
         switch workoutType {
         case .traditionalStrengthTraining:
@@ -53,6 +59,8 @@ enum WorkoutConfig {
         }
     }
     
+    // Reverse for the previous method.
+    // Usage: link your config to HealthKit's activity type.
     var workoutType: HKWorkoutActivityType {
         switch self {
         case .traditionalGym:
@@ -75,6 +83,7 @@ enum WorkoutConfig {
         }
     }
     
+    // Usage: specify indoor, outdoor or unknown location types for your config.
     var locationType: HKWorkoutSessionLocationType {
         switch self {
         case .traditionalGym, .crossFit, .functional:
@@ -85,6 +94,7 @@ enum WorkoutConfig {
         }
     }
     
+    // Usage: specify emoji for your config, it will be displayed on workout picker.
     var emoji: String {
         switch self {
             
@@ -109,6 +119,7 @@ enum WorkoutConfig {
         }
     }
     
+    // Usage: specify title for your config, it will be displayed on workout picker and during the session.
     var title: String {
         switch self {
             
