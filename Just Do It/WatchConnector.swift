@@ -70,7 +70,7 @@ class WatchConnector : NSObject, WCSessionDelegate {
             return
         }
         
-        let session = WCSession.default()
+        let session = WCSession.default
         
         session.delegate = self
         session.activate()

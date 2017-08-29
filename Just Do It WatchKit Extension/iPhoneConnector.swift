@@ -28,8 +28,8 @@ class iPhoneConnector : NSObject, WCSessionDelegate {
         if let session = wcSession {
             try? session.updateApplicationContext(applicationContext)
         } else {
-            WCSession.default().delegate = self
-            WCSession.default().activate()
+            WCSession.default.delegate = self
+            WCSession.default.activate()
             appContextToUpdate = applicationContext
         }
     }
