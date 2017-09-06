@@ -17,7 +17,14 @@ class iPhoneConnector : NSObject, WCSessionDelegate {
     
     // MARK: - Public
     
-    func updateAppState(_ state: AppState) {
+    func wakeUpSession() {
+        if wcSession == nil {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+    }
+    
+    func updateActiveWorkout(_ state: ActiveWorkoutState) {
         updateApplicationContext(applicationContext: state.appContext)
     }
     
@@ -28,8 +35,7 @@ class iPhoneConnector : NSObject, WCSessionDelegate {
         if let session = wcSession {
             try? session.updateApplicationContext(applicationContext)
         } else {
-            WCSession.default.delegate = self
-            WCSession.default.activate()
+            wakeUpSession()
             appContextToUpdate = applicationContext
         }
     }
@@ -44,6 +50,15 @@ class iPhoneConnector : NSObject, WCSessionDelegate {
             sendPending()
         }
     }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if let configs = applicationContext.workoutConfigs {
+            WorkoutConfigDefaults.shared.store(configs: configs)
+        }
+    }
+    
+    
+    // MARK: - Private
     
     private func sendPending() {
         if let session = wcSession {

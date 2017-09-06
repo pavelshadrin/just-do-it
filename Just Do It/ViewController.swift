@@ -23,9 +23,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var visibleIndexPath = IndexPath(row: 0, section: 0)
     
     let wc = WatchConnector.shared
-    var latestKnownAppState: AppState?
+    var latestKnownWorkoutState: ActiveWorkoutState?
     
-    let sports = WorkoutConfig.defaultSports
+    var sports = WorkoutConfigDefaults.shared.workoutConfigsFromStorage()
+    
+    let healthDataAvailable = HKHealthStore.isHealthDataAvailable()
     
     
     // MARK: - Overrides
@@ -48,39 +50,48 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.delegate = self
         
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadConfigs), name: .newWorkoutConfigsStoredNotificationName, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if HKHealthStore.isHealthDataAvailable() {
+        if healthDataAvailable {
             HKHealthStore.requestAccessToHealthKit()
         } else {
             startButton.isEnabled = false
         }
-        
-        updateFor(wc.latestAppState)
+                
+        updateFor(wc.latestWorkoutState)
     }
     
     
     // MARK: - Actions
 
     @IBAction func start(_ sender: Any) {
-        if latestKnownAppState == .running {
+        if latestKnownWorkoutState == .running {
             return
         }
+        
+        detectCurrentIndexPath()
         
         spinner.startAnimating()
         startButton.isHidden = true
         
         wc.start(chosenSport) { [weak self] (success, error) in
             self?.spinner.stopAnimating()
-            self?.startButton.isHidden = false
             
-            if success {
-                // TODO: display active state
-            } else if let e = error {
-                print("\(e)")
+            if !success {
+                let c = UIAlertController(title: "Can't Start Workout", message: "Please make sure your watch is turned on and connected, then try again.", preferredStyle: .alert)
+                c.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self?.present(c, animated: true, completion: nil)
+                
+                self?.startButton.isHidden = false
+                
+                if let e = error {
+                    print("\(e)")
+                }
             }
         }
     }
@@ -88,7 +99,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     // MARK: - WatchConnectorDelegate
     
-    func watchConnectorDidUpdate(_ state: AppState) {
+    func watchConnectorDidUpdate(_ state: ActiveWorkoutState) {
         updateFor(state)
     }
     
@@ -113,7 +124,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        detectCurrentIndexPath()
+        detectCurrentIndexPath()        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -142,16 +153,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return sports[visibleIndexPath.row]
     }
     
-    private func updateFor(_ appState: AppState?) {
-        latestKnownAppState = appState
+    private func updateFor(_ workoutState: ActiveWorkoutState?) {
+        latestKnownWorkoutState = workoutState
         
         DispatchQueue.main.async {
-            if let s = appState, s == .running {
+            if let s = workoutState, s == .running {
                 self.workoutStatusLabel.isHidden = false
+                self.startButton.isHidden = true
             } else {
                 self.workoutStatusLabel.isHidden = true
+                self.startButton.isHidden = false
             }
         }
+    }
+    
+    @objc private func reloadConfigs() {
+        sports = WorkoutConfigDefaults.shared.workoutConfigsFromStorage()
+        
+        self.collectionView.reloadData()
     }
 }
 

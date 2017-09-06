@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0C113A1F59BD4D005944CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0C11391F59BD4D005944CD /* SettingsViewController.swift */; };
 		AB37A3451EF9451500919FF6 /* SetupInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3441EF9451500919FF6 /* SetupInterfaceController.swift */; };
 		AB37A3471EF9452E00919FF6 /* WorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3461EF9452E00919FF6 /* WorkoutInterfaceController.swift */; };
 		AB37A3491EF9455F00919FF6 /* SummaryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3481EF9455F00919FF6 /* SummaryInterfaceController.swift */; };
@@ -16,8 +17,10 @@
 		AB37A3551EFBDE6000919FF6 /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3541EFBDE6000919FF6 /* SportCollectionViewCell.swift */; };
 		AB37A3571EFBDF9300919FF6 /* SportCardsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3561EFBDF9300919FF6 /* SportCardsLayout.swift */; };
 		AB37A3591EFD699100919FF6 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB37A3581EFD699100919FF6 /* ComplicationController.swift */; };
-		ABC911A91F02A62100F18461 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC911A81F02A62100F18461 /* AppState.swift */; };
-		ABC911AA1F02A62100F18461 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC911A81F02A62100F18461 /* AppState.swift */; };
+		AB68D2611F570C4B00F659CB /* WorkoutConfigDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68D2601F570C4B00F659CB /* WorkoutConfigDefaults.swift */; };
+		AB68D2621F570C4B00F659CB /* WorkoutConfigDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68D2601F570C4B00F659CB /* WorkoutConfigDefaults.swift */; };
+		ABC911A91F02A62100F18461 /* ActiveWorkoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC911A81F02A62100F18461 /* ActiveWorkoutState.swift */; };
+		ABC911AA1F02A62100F18461 /* ActiveWorkoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC911A81F02A62100F18461 /* ActiveWorkoutState.swift */; };
 		ABD472391EF430E60061987D /* HKUnit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD472381EF430E60061987D /* HKUnit+Extensions.swift */; };
 		ABE8C9DA1EDF0DBE0079FE91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8C9D91EDF0DBE0079FE91 /* AppDelegate.swift */; };
 		ABE8C9DC1EDF0DBE0079FE91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8C9DB1EDF0DBE0079FE91 /* ViewController.swift */; };
@@ -96,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0C11391F59BD4D005944CD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB37A3441EF9451500919FF6 /* SetupInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupInterfaceController.swift; sourceTree = "<group>"; };
 		AB37A3461EF9452E00919FF6 /* WorkoutInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutInterfaceController.swift; sourceTree = "<group>"; };
 		AB37A3481EF9455F00919FF6 /* SummaryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryInterfaceController.swift; sourceTree = "<group>"; };
@@ -105,7 +109,8 @@
 		AB37A3541EFBDE6000919FF6 /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB37A3561EFBDF9300919FF6 /* SportCardsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCardsLayout.swift; sourceTree = "<group>"; };
 		AB37A3581EFD699100919FF6 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		ABC911A81F02A62100F18461 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		AB68D2601F570C4B00F659CB /* WorkoutConfigDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutConfigDefaults.swift; sourceTree = "<group>"; };
+		ABC911A81F02A62100F18461 /* ActiveWorkoutState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutState.swift; sourceTree = "<group>"; };
 		ABD472381EF430E60061987D /* HKUnit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKUnit+Extensions.swift"; sourceTree = "<group>"; };
 		ABE8C9D61EDF0DBE0079FE91 /* Just Do It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Do It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE8C9D91EDF0DBE0079FE91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +210,7 @@
 				ABE8CA171EDF0E0D0079FE91 /* Just Do It.entitlements */,
 				ABE8C9D91EDF0DBE0079FE91 /* AppDelegate.swift */,
 				ABE8C9DB1EDF0DBE0079FE91 /* ViewController.swift */,
+				AB0C11391F59BD4D005944CD /* SettingsViewController.swift */,
 				AB37A3541EFBDE6000919FF6 /* SportCollectionViewCell.swift */,
 				AB37A3561EFBDF9300919FF6 /* SportCardsLayout.swift */,
 				ABE8C9DD1EDF0DBE0079FE91 /* Main.storyboard */,
@@ -264,9 +270,10 @@
 		ABE8CA2C1EDF0F5B0079FE91 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				ABE8CA2D1EDF0F810079FE91 /* HealthStore.swift */,
 				ABE8CA3E1EDF19E00079FE91 /* WorkoutConfig.swift */,
-				ABC911A81F02A62100F18461 /* AppState.swift */,
+				AB68D2601F570C4B00F659CB /* WorkoutConfigDefaults.swift */,
+				ABE8CA2D1EDF0F810079FE91 /* HealthStore.swift */,
+				ABC911A81F02A62100F18461 /* ActiveWorkoutState.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -470,10 +477,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB68D2611F570C4B00F659CB /* WorkoutConfigDefaults.swift in Sources */,
 				ABE8C9DC1EDF0DBE0079FE91 /* ViewController.swift in Sources */,
 				ABE8CA311EDF0FAD0079FE91 /* WatchConnector.swift in Sources */,
+				AB0C113A1F59BD4D005944CD /* SettingsViewController.swift in Sources */,
 				ABE8CA3F1EDF19E00079FE91 /* WorkoutConfig.swift in Sources */,
-				ABC911A91F02A62100F18461 /* AppState.swift in Sources */,
+				ABC911A91F02A62100F18461 /* ActiveWorkoutState.swift in Sources */,
 				AB37A3551EFBDE6000919FF6 /* SportCollectionViewCell.swift in Sources */,
 				ABE8CA2E1EDF0F810079FE91 /* HealthStore.swift in Sources */,
 				AB37A3571EFBDF9300919FF6 /* SportCardsLayout.swift in Sources */,
@@ -496,7 +505,8 @@
 				AB37A3511EFA796A00919FF6 /* Collection+Extensions.swift in Sources */,
 				AB37A3451EF9451500919FF6 /* SetupInterfaceController.swift in Sources */,
 				ABE8CA351EDF10650079FE91 /* iPhoneConnector.swift in Sources */,
-				ABC911AA1F02A62100F18461 /* AppState.swift in Sources */,
+				AB68D2621F570C4B00F659CB /* WorkoutConfigDefaults.swift in Sources */,
+				ABC911AA1F02A62100F18461 /* ActiveWorkoutState.swift in Sources */,
 				ABE8CA391EDF10700079FE91 /* Workout.swift in Sources */,
 				AB37A3531EFA997100919FF6 /* UIColor+Extensions.swift in Sources */,
 				ABE8CA3D1EDF15840079FE91 /* HealthStore.swift in Sources */,

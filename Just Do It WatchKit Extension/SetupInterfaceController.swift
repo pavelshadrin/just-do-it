@@ -7,21 +7,48 @@
 //
 
 import WatchKit
+import HealthKit
 
 class SetupInterfaceController: WKInterfaceController {
+    
+    let connector = iPhoneConnector.shared
 
     @IBOutlet var sportPicker: WKInterfacePicker!
     @IBOutlet var sportLabel: WKInterfaceLabel!
     
-    // Selected sport
-    var sport = WorkoutConfig.traditionalGym
-    
-    let sports = WorkoutConfig.defaultSports
+    var selectedSport = WorkoutConfig.traditionalGym
+    var sports = [WorkoutConfig]()
     
     
     override func willActivate() {
         super.willActivate()
         
+        connector.wakeUpSession()
+        
+        HKHealthStore.requestAccessToHealthKit()
+        
+        resetUIIfNeeded()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetUIIfNeeded), name: .newWorkoutConfigsStoredNotificationName, object: nil)
+    }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func sportChanged(_ value: Int) {
+        selectedSport = sports[value]
+        
+        updateEmoji()
+    }
+    
+    @IBAction func startWorkout() {
+        WKInterfaceController.reloadRootControllers(withNames: ["WorkoutInterfaceController"], contexts: [selectedSport])
+    }
+    
+    
+    // MARK: - Private
+    
+    private func resetUI() {
         var sportItems = [WKPickerItem]()
         
         for s in sports {
@@ -32,21 +59,23 @@ class SetupInterfaceController: WKInterfaceController {
         
         sportPicker.setItems(sportItems)
         sportPicker.setSelectedItemIndex(0)
+        selectedSport = sports.first ?? WorkoutConfig.traditionalGym
         
         updateEmoji()
-    }
-    
-    @IBAction func sportChanged(_ value: Int) {
-        sport = sports[value]
-        
-        updateEmoji()
-    }
-    
-    @IBAction func startWorkout() {
-        WKInterfaceController.reloadRootControllers(withNames: ["WorkoutInterfaceController"], contexts: [sport])
     }
     
     private func updateEmoji() {
-        sportLabel.setText(sport.emoji)
+        sportLabel.setText(selectedSport.emoji)
+    }
+    
+    @objc private func resetUIIfNeeded() {
+        DispatchQueue.main.async {
+            let newSports = WorkoutConfigDefaults.shared.workoutConfigsFromStorage()
+            
+            if self.sports != newSports {
+                self.sports = newSports
+                self.resetUI()
+            }
+        }
     }
 }

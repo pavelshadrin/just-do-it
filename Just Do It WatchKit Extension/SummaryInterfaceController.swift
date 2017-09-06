@@ -22,6 +22,8 @@ class SummaryInterfaceController: WKInterfaceController {
     
     let positiveEmoji = ["👍🏻", "👏🏻", "🥇", "🤘🏻", "✌🏻", "🏅", "🏆", "💪🏻", "😍", "😎"]
     
+    var didPresentAlert = false
+    
     
     // MARK: - Life Cycle
     
@@ -78,6 +80,22 @@ class SummaryInterfaceController: WKInterfaceController {
         
         if let m = results?.maxHeartRate {
             maxHeartRateLabel.setText(m > 0 ? "\(m)" : "--")
+        }
+        
+        // Check if health data is not empty
+        if let r = results {
+            if r.duration > 120 && (r.calories == 0 || r.averageHeartRate == 0) {
+                if !didPresentAlert {
+                    let okAction = WKAlertAction(title: "OK", style: .default) { }
+                    
+                    self.presentAlert(withTitle: "Health Data Missing",
+                                      message: "If you want to know your heart rate and calories burned, please go to Settings on your iPhone and give access to your health data.",
+                                      preferredStyle: WKAlertControllerStyle.alert,
+                                      actions: [okAction])
+                    
+                    didPresentAlert = true
+                }
+            }
         }
     }
 }

@@ -333,7 +333,13 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
             endDate = Date()
             
             stopAccumulatingData()
-            saveWorkout()
+            
+            #if DEBUG
+                // Don't save workout into Health
+            #else
+                saveWorkout()
+            #endif
+            
             
             print("Ended at \(endDate!)")
             

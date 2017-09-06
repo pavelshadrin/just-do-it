@@ -88,7 +88,7 @@ class WorkoutInterfaceController: WKInterfaceController, WorkoutDelegate {
         case .running:
             if fromState == .notStarted {
                 // Tell the iPhone app that workout has started
-                connector.updateAppState(.running)
+                connector.updateActiveWorkout(.running)
             }
             
             restartTimer()
@@ -100,7 +100,7 @@ class WorkoutInterfaceController: WKInterfaceController, WorkoutDelegate {
             
         case .ended:
             // Tell the iPhone app that workout has ended
-            connector.updateAppState(.idle)
+            connector.updateActiveWorkout(.idle)
             
             handleEnd()
             
