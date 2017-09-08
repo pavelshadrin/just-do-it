@@ -41,20 +41,25 @@ class WorkoutInterfaceController: WKInterfaceController, WorkoutDelegate {
             // Started on iPhone
             config = WorkoutConfig.config(for: w.activityType)
         }
-    }
-    
-    override func willActivate() {
-        super.willActivate()
-        
-        HKHealthStore.requestAccessToHealthKit()
         
         if let c = config, workout == nil {
             workout = Workout(delegate: self, config: c)
         }
     }
     
+    override func willActivate() {
+        super.willActivate()
+        
+        // Workaround to kick the timer after starting a workout from iPhone
+        if let state = workout?.session.state, state == .running {
+            timer.start()
+        }
+    }
+    
     override func didAppear() {
         super.didAppear()
+        
+        HKHealthStore.requestAccessToHealthKit()
         
         self.setTitle(config?.title)
         

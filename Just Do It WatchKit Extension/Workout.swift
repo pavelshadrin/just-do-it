@@ -167,18 +167,16 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
     }
     
     private func processCurrentHeartRate(samples: [HKSample]?) {
-        DispatchQueue.main.async { [weak self] in
-            if let quantitySamples = samples as? [HKQuantitySample] {
-                for sample in quantitySamples {
-                    self?.currentHeartRateQuantity = sample.quantity
-                }
-                
-                // Query average and max heart rate right after fresh HR has come
-                self?.startTotalHeartRateStatisticsQuery()
-                self?.startLastThreeMinutesHeartRateStatisticsQuery()
-                
-                self?.didUpdateData()
+        if let quantitySamples = samples as? [HKQuantitySample] {
+            for sample in quantitySamples {
+                self.currentHeartRateQuantity = sample.quantity
             }
+            
+            // Query average and max heart rate right after fresh HR has come
+            self.startTotalHeartRateStatisticsQuery()
+            self.startLastThreeMinutesHeartRateStatisticsQuery()
+            
+            self.didUpdateData()
         }
     }
     
@@ -203,19 +201,17 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
     }
     
     private func processActiveEnergyBurned(samples: [HKSample]?) {
-        DispatchQueue.main.async { [weak self] in
-            if let quantitySamples = samples as? [HKQuantitySample] {
-                for sample in quantitySamples {
-                    if self?.session.state == HKWorkoutSessionState.running {
-                        let newKCal = sample.quantity.doubleValue(for: HKUnit.kilocalorie())
-                        
-                        // Add up to the previous value
-                        self?.activeEnergyBurnedQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: newKCal + (self?.activeEnergyBurned ?? 0.0))
-                    }
+        if let quantitySamples = samples as? [HKQuantitySample] {
+            for sample in quantitySamples {
+                if self.session.state == HKWorkoutSessionState.running {
+                    let newKCal = sample.quantity.doubleValue(for: HKUnit.kilocalorie())
+                    
+                    // Add up to the previous value
+                    self.activeEnergyBurnedQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: newKCal + (self.activeEnergyBurned ?? 0.0))
                 }
-                
-                self?.didUpdateData()
             }
+            
+            self.didUpdateData()
         }
     }
     
@@ -293,12 +289,16 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
     // MARK: - Private - Misc
     
     private func didUpdateData() {
-        delegate?.didUpdate(activeEnergyBurned: activeEnergyBurned,
-                            currentHeartRate: currentHeartRate,
-                            maxHeartRateInLastThreeMinutes: maxHeartRateInLastThreeMinutes,
-                            averageHeartRate: averageHeartRate,
-                            maxHeartRate: maxHeartRate,
-                            in: self)
+        DispatchQueue.main.async { [weak self] in
+            if let s = self {
+                s.delegate?.didUpdate(activeEnergyBurned: s.activeEnergyBurned,
+                            currentHeartRate: s.currentHeartRate,
+                            maxHeartRateInLastThreeMinutes: s.maxHeartRateInLastThreeMinutes,
+                            averageHeartRate: s.averageHeartRate,
+                            maxHeartRate: s.maxHeartRate,
+                            in: s)
+            }
+        }
     }
     
     
@@ -306,7 +306,11 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         self.stop()
-        delegate?.didFail(with: error, in: self)
+        DispatchQueue.main.async { [weak self] in
+            if let s = self {
+                s.delegate?.didFail(with: error, in: s)
+            }
+        }
     }
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {
@@ -350,9 +354,13 @@ class Workout: NSObject, HKWorkoutSessionDelegate {
             break
         }
         
-        delegate?.didChange(fromState: fromState,
-                            toState: toState,
-                            in: self)
+        DispatchQueue.main.async { [weak self] in
+            if let s = self {
+                s.delegate?.didChange(fromState: fromState,
+                                      toState: toState,
+                                      in: s)
+            }
+        }
     }
     
     
